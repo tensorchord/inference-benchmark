@@ -25,3 +25,13 @@ Benchmark for machine learning model online serving.
 - [ ] Embedding
   - [ ] [ImageBind](https://github.com/facebookresearch/ImageBind)
 - [ ] Coding Assistant
+
+## Frameworks
+
+- [MOSEC](https://github.com/mosecorg/mosec)
+- [MLServer](https://github.com/SeldonIO/MLServer)
+- [Triton Inference Server](https://github.com/triton-inference-server/python_backend)
+- [Text Generation Inference](https://github.com/huggingface/text-generation-inference)
+- [BentoML](https://github.com/bentoml/BentoML)
+- [Truss](https://github.com/basetenlabs/truss)
+- [Potassium](https://github.com/bananaml/potassium)

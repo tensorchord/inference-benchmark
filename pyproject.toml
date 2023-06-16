@@ -23,9 +23,6 @@ license = { text = "Apache-2.0" }
 [project.urls]
 "Homepage" = "https://github.com/tensorchord/inference-benchmark"
 
-[project.scripts]
-inference-benchmark = ""
-
 [project.optional-dependencies]
 dev = [
     "black",

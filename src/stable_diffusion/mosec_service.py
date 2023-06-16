@@ -11,10 +11,11 @@ logger = get_logger()
 
 class StableDiffusion(MsgpackMixin, Worker):
     def __init__(self):
-        self.pipe = StableDiffusionPipeline.from_pretrained(
-            "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16
-        )
         device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.pipe = StableDiffusionPipeline.from_pretrained(
+            "runwayml/stable-diffusion-v1-5",
+            torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+        )
         self.example = ["useless example prompt"] * 8
         self.pipe = self.pipe.to(device)
 
@@ -30,5 +31,5 @@ class StableDiffusion(MsgpackMixin, Worker):
 
 if __name__ == "__main__":
     server = Server()
-    server.append_worker(StableDiffusion, num=1, max_batch_size=8)
+    server.append_worker(StableDiffusion, num=1, max_batch_size=8, timeout=30)
     server.run()

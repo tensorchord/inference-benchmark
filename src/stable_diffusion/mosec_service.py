@@ -14,7 +14,7 @@ class StableDiffusion(MsgpackMixin, Worker):
         device = "cuda" if torch.cuda.is_available() else "cpu"
         self.pipe = StableDiffusionPipeline.from_pretrained(
             "runwayml/stable-diffusion-v1-5",
-            torch_dtype=torch.float16 if device == "cuda" else torch.float32
+            torch_dtype=torch.float16 if device == "cuda" else torch.float32,
         )
         self.example = ["useless example prompt"] * 8
         self.pipe = self.pipe.to(device)

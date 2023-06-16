@@ -20,7 +20,7 @@ def init():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model = StableDiffusionPipeline.from_pretrained(
         "runwayml/stable-diffusion-v1-5",
-        torch_dtype=torch.float16 if device == "cuda" else torch.float32
+        torch_dtype=torch.float16 if device == "cuda" else torch.float32,
     )
     model.to(device)
 

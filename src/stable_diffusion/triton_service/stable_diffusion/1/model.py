@@ -17,7 +17,6 @@ class TritonPythonModel:
         prompts = []
         for request in requests:
             prompt = triton_utils.get_input_tensor_by_name(request, "PROMPT")
-            breakpoint()
             prompts.append(prompt)
     
         images = self.model(prompts).images

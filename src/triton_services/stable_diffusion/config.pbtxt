@@ -1,5 +1,6 @@
 name: "stable diffusion"
 backend: "python"
+max_batch_size: 8
 dynamic_batching {
     preferred_batch_size: [4, 8]
     max_queue_delay_microseconds: 10
@@ -9,7 +10,7 @@ input [
     {
         name: "PROMPT"
         data_type: TYPE_STRING
-        dims: [ -1 ]
+        dims: [ 1 ]
     }
 ]
 
@@ -17,7 +18,7 @@ output [
     {
         name: "IMAGE"
         data_type: TYPE_FP32
-        dims: [ -1, -1, -1, -1 ]
+        dims: [ -1, -1, -1 ]
     }
 ]
 

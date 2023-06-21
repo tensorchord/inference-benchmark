@@ -4,7 +4,7 @@ import requests
 from mlserver.codecs import StringCodec
 from mlserver.types import InferenceRequest
 
-endpoint = "http://localhost:8080/v2/models/stable-diffusion/infer"
+endpoint = "http://127.0.0.1:8080/v2/models/stable-diffusion/infer"
 
 inference_request_dict = InferenceRequest(
     inputs=[

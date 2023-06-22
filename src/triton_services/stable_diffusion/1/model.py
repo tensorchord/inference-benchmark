@@ -5,12 +5,12 @@ from diffusers import StableDiffusionPipeline
 
 class TritonPythonModel:
     def initialize(self, args):
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = StableDiffusionPipeline.from_pretrained(
             "runwayml/stable-diffusion-v1-5",
-            torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+            torch_dtype=torch.float16 if self.device == "cuda" else torch.float32,
         )
-        self.model.to(device)
+        self.model.to(self.device)
 
     def execute(self, requests):
         responses = []
@@ -25,7 +25,9 @@ class TritonPythonModel:
 
         images = self.model(prompts).images
         for image in images:
-            output = triton_utils.Tensor("IMAGE", image.cpu())
+            output = triton_utils.Tensor(
+                "IMAGE", image.cpu().numpy() if self.device == "cuda" else image.numpy()
+            )
             resp = triton_utils.InferenceResponse(output_tensors=[output])
             responses.append(resp)
 

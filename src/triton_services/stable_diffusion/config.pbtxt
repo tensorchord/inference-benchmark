@@ -1,9 +1,9 @@
 name: "stable_diffusion"
 backend: "python"
-max_batch_size: 8
-dynamic_batching {
-    max_queue_delay_microseconds: 10
-}
+# max_batch_size: 8
+# dynamic_batching {
+#     max_queue_delay_microseconds: 10
+# }
 
 input [
     {

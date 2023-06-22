@@ -16,9 +16,13 @@ class TritonPythonModel:
         responses = []
         prompts = []
         for request in requests:
-            prompt = triton_utils.get_input_tensor_by_name(request, "PROMPT").as_numpy()
-            prompts.append(prompt)
-    
+            prompt = (
+                triton_utils.get_input_tensor_by_name(request, "PROMPT")
+                .as_numpy()
+                .tolist()
+            )
+            prompts.append(prompt[0].decode())
+
         images = self.model(prompts).images
         for image in images:
             output = triton_utils.Tensor("IMAGE", image.cpu())

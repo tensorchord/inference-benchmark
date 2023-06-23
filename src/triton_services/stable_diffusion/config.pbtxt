@@ -1,0 +1,28 @@
+name: "stable_diffusion"
+backend: "python"
+# max_batch_size: 8
+# dynamic_batching {
+#     max_queue_delay_microseconds: 10
+# }
+
+input [
+    {
+        name: "PROMPT"
+        data_type: TYPE_STRING
+        dims: [ 1 ]
+    }
+]
+
+output [
+    {
+        name: "IMAGE"
+        data_type: TYPE_UINT8
+        dims: [ 512, 512, 3 ]
+    }
+]
+
+instance_group [
+    {
+        count: 1
+    }
+]

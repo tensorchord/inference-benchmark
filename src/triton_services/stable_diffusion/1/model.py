@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 import triton_python_backend_utils as triton_utils
 from diffusers import StableDiffusionPipeline
@@ -25,9 +26,7 @@ class TritonPythonModel:
 
         images = self.model(prompts).images
         for image in images:
-            output = triton_utils.Tensor(
-                "IMAGE", image.cpu().numpy() if self.device == "cuda" else image.numpy()
-            )
+            output = triton_utils.Tensor("IMAGE", np.asarray(image))
             resp = triton_utils.InferenceResponse(output_tensors=[output])
             responses.append(resp)
 

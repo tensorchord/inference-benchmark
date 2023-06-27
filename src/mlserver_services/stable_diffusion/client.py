@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from threading import Thread
 
 import requests
@@ -17,9 +18,13 @@ inference_request_dict = InferenceRequest(
 
 def post():
     response = requests.post(endpoint, json=inference_request_dict)
-    print(response.json())
+    assert response.status_code == HTTPStatus.OK
 
 
 for _ in range(10):
-    # Test adaptive batching.
+    # Test sequential requests.
+    post()
+
+for _ in range(10):
+    # Test concurrent requests for adaptive batching.
     Thread(target=post).start()

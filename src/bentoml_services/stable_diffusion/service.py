@@ -59,6 +59,3 @@ async def generate(input_txt):
 def batch_generate(input_txt):
     batch_ret = stable_diffusion_runner.inference.run([input_txt])
     return batch_ret[0]
-
-
-# curl -X POST -H "content-type: application/text" --data "a happy boy with his toys" http://127.0.0.1:3000/generate --output result.jpeg

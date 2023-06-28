@@ -1,38 +1,26 @@
+<div align="center">
+
 # Inference Benchmark
 
-Benchmark for machine learning model online serving.
+Maximize the potential of your models with the inference benchmark (tool).
 
-## Collected information
+</div>
 
-- throughput
-- latency
-  - P99
-  - P90
-  - P50
-- CPU usage
-- memory usage
-- GPU utilization
-- GPU memory usage
+<p align=center>
+<a href="https://discord.gg/KqswhpVgdU"><img alt="discord invitation link" src="https://dcbadge.vercel.app/api/server/KqswhpVgdU?style=flat"></a>
+<a href="https://twitter.com/TensorChord"><img src="https://img.shields.io/twitter/follow/tensorchord?style=social" alt="trackgit-views" /></a>
+</p>
 
-## Tasks
+# What is it
 
-- [ ] NLP
-  - [ ] [LLaMA](https://github.com/facebookresearch/llama)
-  - [ ] [Distil Bert](https://arxiv.org/abs/1910.01108)
-- [ ] CV
-  - [ ] [Stable Diffusion](https://huggingface.co/runwayml/stable-diffusion-v1-5)
-- [ ] Speech Recognition
-  - [ ] [Whisper](https://github.com/openai/whisper)
-- [ ] Embedding
-  - [ ] [ImageBind](https://github.com/facebookresearch/ImageBind)
-- [ ] Coding Assistant
+Inference benchmark provides a standard way to measure the performance of inference workloads. It is also a tool that allows you to evaluate and optimize the performance of your inference workloads.
 
-## Frameworks
+# Results
 
-- [MOSEC](https://github.com/mosecorg/mosec)
-- [MLServer](https://github.com/SeldonIO/MLServer)
-- [Triton Inference Server](https://github.com/triton-inference-server/python_backend)
-- [Text Generation Inference](https://github.com/huggingface/text-generation-inference)
-- [BentoML](https://github.com/bentoml/BentoML)
-- [Truss](https://github.com/basetenlabs/truss)
-- [Potassium](https://github.com/bananaml/potassium)
+## Bert
+
+We benchmarked [pytriton (triton-inference-server)](https://github.com/triton-inference-server/pytriton) and [mosec](https://github.com/mosecorg/mosec) with bert. We enabled dynamic batching for both frameworks with max batch size 32 and max wait time 10ms. Please checkout the [result](./benchmark/results/bert.md) for more details.
+
+![DistilBert](./benchmark/results/distilbert_serving_benchmark.png)
+
+More [results with different models on different serving frameworks](https://github.com/tensorchord/inference-benchmark/issues/7) are coming soon.

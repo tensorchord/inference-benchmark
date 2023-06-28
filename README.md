@@ -18,6 +18,7 @@ Benchmark for machine learning model online serving.
 
 - [ ] NLP
   - [ ] [LLaMA](https://github.com/facebookresearch/llama)
+  - [ ] [Distil Bert](https://arxiv.org/abs/1910.01108)
 - [ ] CV
   - [ ] [Stable Diffusion](https://huggingface.co/runwayml/stable-diffusion-v1-5)
 - [ ] Speech Recognition

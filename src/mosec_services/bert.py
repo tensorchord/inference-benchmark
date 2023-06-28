@@ -25,7 +25,7 @@ from transformers import (  # type: ignore
 logger = get_logger()
 
 MODEL_NAME = "distilbert-base-uncased-finetuned-sst-2-english"
-
+NUM_INSTANCE = 1
 INFERENCE_BATCH_SIZE = 32
 
 
@@ -85,6 +85,11 @@ class Inference(Worker):
 
 if __name__ == "__main__":
     server = Server()
-    server.append_worker(Preprocess, num=2)
-    server.append_worker(Inference, max_batch_size=INFERENCE_BATCH_SIZE)
+    server.append_worker(Preprocess, num=2 * NUM_INSTANCE)
+    server.append_worker(
+        Inference,
+        max_batch_size=INFERENCE_BATCH_SIZE,
+        max_wait_time=10,
+        num=NUM_INSTANCE,
+    )
     server.run()

@@ -10,6 +10,7 @@ from transformers import (  # type: ignore
 
 MODEL_NAME = "distilbert-base-uncased-finetuned-sst-2-english"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+NUM_INSTANCE = 1
 tokenizer = DistilBertTokenizer.from_pretrained(MODEL_NAME)
 model = DistilBertForSequenceClassification.from_pretrained(MODEL_NAME)
 model.to(DEVICE)
@@ -33,7 +34,7 @@ def main():
     with Triton(config=config) as triton:
         triton.bind(
             model_name="distilbert",
-            infer_func=infer,
+            infer_func=[infer] * NUM_INSTANCE,
             inputs=[Tensor(name="messages", dtype=np.bytes_, shape=(1,))],
             outputs=[Tensor(name="labels", dtype=np.bytes_, shape=(1,))],
             config=ModelConfig(

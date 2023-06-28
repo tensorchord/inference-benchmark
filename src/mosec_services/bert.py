@@ -85,7 +85,7 @@ class Inference(Worker):
 
 if __name__ == "__main__":
     server = Server()
-    server.append_worker(Preprocess, num=2)
+    server.append_worker(Preprocess, num=2 * NUM_INSTANCE)
     server.append_worker(
         Inference,
         max_batch_size=INFERENCE_BATCH_SIZE,
